@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "669272557825",
+    "firebase_url": "https://pushnotification-b68ec-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "pushnotification-b68ec",
+    "storage_bucket": "pushnotification-b68ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669272557825:android:8e719c6346c79f3cf43300",
+        "android_client_info": {
+          "package_name": "com.example.withuslaw_template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669272557825-urlecfenblc5m2l22en7enbevgnbr0oo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnE8F6XflDaXSJF813xcnlSAMrtLqeAb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669272557825-urlecfenblc5m2l22en7enbevgnbr0oo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "669272557825-i6nvmp9gtdirci2la7gfcpi3j98cghc2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.withuslawTemplate.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
