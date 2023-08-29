@@ -25,11 +25,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Push Notification',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
         textTheme: const TextTheme(
           bodyMedium: TextStyle(fontSize: 40),
         ),
       ),
+      debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
       home: const HomeScreen(),
       routes: {
