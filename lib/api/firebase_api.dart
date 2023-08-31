@@ -5,9 +5,13 @@ import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:withuslaw_template/main.dart';
+import 'package:withuslaw_template/notification.dart';
 import 'package:withuslaw_template/page/notification_screen.dart';
 
 Future<void> handleBackgroundMessgae(RemoteMessage message) async {
+  // notification 알림 띄우기
+  FlutterLocalNotification.showNotification(message.notification);
+
   print('Title: ${message.notification?.title}');
   print('Body: ${message.notification?.body}');
   print('Payload: ${message.data}');
@@ -20,7 +24,7 @@ class FirebaseApi {
     'high_importance_channel',
     'High Importance Notifications',
     description: 'This channel is used for important notification',
-    importance: Importance.defaultImportance,
+    importance: Importance.max,
   );
   final _localNotifications = FlutterLocalNotificationsPlugin();
 
@@ -40,8 +44,11 @@ class FirebaseApi {
 
     await _localNotifications.initialize(
       settings,
-      onDidReceiveNotificationResponse: (payload) {
-        final message = RemoteMessage.fromMap(jsonDecode(payload as String));
+      // triggers when a user clicks on a local notification
+      onDidReceiveNotificationResponse: (details) {
+        final payload = details.payload ?? '';
+        final message = RemoteMessage.fromMap(jsonDecode(payload));
+        print("message=================>$message");
         handleMessage(message);
       },
     );
@@ -59,39 +66,50 @@ class FirebaseApi {
       badge: true,
       sound: true,
     );
-
+    // when the app is opened from a terminated state via notification
     FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
+    // when the application opened from the background state via notification
     FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessgae);
-    FirebaseMessaging.onMessage.listen((message) {
-      final notification = message.notification;
+    FirebaseMessaging.onMessage.listen(onFirebaseMessage);
+  }
 
-      if (notification == null) return;
+  void onFirebaseMessage(message) async {
+    final notification = message.notification;
 
-      _localNotifications.show(
-        notification.hashCode,
-        notification.title,
-        notification.body,
-        NotificationDetails(
-          android: AndroidNotificationDetails(
-            _androidChannel.id,
-            _androidChannel.name,
-            channelDescription: _androidChannel.description,
-            icon: '@drawable/ic_launcher',
-          ),
+    if (notification == null) return;
+
+    // notification 알림 띄우기
+    await FlutterLocalNotification.showNotification(notification);
+
+    await _localNotifications.show(
+      notification.hashCode,
+      notification.title,
+      notification.body,
+      NotificationDetails(
+        android: AndroidNotificationDetails(
+          _androidChannel.id,
+          _androidChannel.name,
+          channelDescription: _androidChannel.description,
+          icon: '@drawable/ic_launcher',
         ),
-        payload: jsonEncode(
-          message.toMap(),
-        ),
-      );
-    });
+      ),
+      payload: jsonEncode(
+        message.toMap(),
+      ),
+    );
   }
 
   Future<void> initNotifications() async {
-    await _firebaseMessaging.requestPermission();
-    final fcmToken = await _firebaseMessaging.getToken();
-    print('Token================> $fcmToken');
+    await _firebaseMessaging.requestPermission(); // request permission to user
+    final fCMToken = await _firebaseMessaging.getToken();
+    print('Token================> $fCMToken');
+
     initPushNotifications();
     initLocalNotifications();
+
+    // 3초 후 권한 요청
+    Future.delayed(const Duration(seconds: 3),
+        FlutterLocalNotification.requestNotificationPermission());
   }
 }
