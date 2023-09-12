@@ -23,10 +23,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: const Text("withus_law")),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const EventFormatPage())),
-          child: const Text('popup'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const EventFormatPage())),
+              child: const Text('popup'),
+            ),
+          ],
         ),
       ),
     );

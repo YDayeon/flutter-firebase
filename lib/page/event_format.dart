@@ -23,19 +23,29 @@ class EventDialog extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
-          style: TextButton.styleFrom(backgroundColor: Colors.blue[700]),
+            style: TextButton.styleFrom(backgroundColor: Colors.red),
+            onPressed: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => const FullPopUpWidget(),
+                ),
+            child: const Text(
+              'Full Pop-up',
+              style: TextStyle(color: Colors.white),
+            )),
+        TextButton(
+          style: TextButton.styleFrom(backgroundColor: Colors.orange),
           onPressed: () => showDialog<String>(
             context: context,
             builder: (BuildContext context) => const TextEventWidget(),
           ),
           child: const Text(
-            '이벤트 팝업 띄우기',
+            '이벤트 팝업 Figma',
             style: TextStyle(color: Colors.white),
           ),
         ),
         TextButton(
             style: TextButton.styleFrom(
-              backgroundColor: Colors.pink[400],
+              backgroundColor: Colors.amber,
             ),
             onPressed: () {
               showModalBottomSheet<void>(
@@ -104,6 +114,36 @@ class EventAlert extends StatelessWidget {
           child: const Text('닫기'),
         )
       ],
+    );
+  }
+}
+
+class FullPopUpWidget extends StatelessWidget {
+  const FullPopUpWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'This is Full Screen Event Pop-up template',
+            style: TextStyle(color: Colors.pink[100]),
+          ),
+          TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+              ),
+              onPressed: () => Navigator.pop(context, 'CLOSE'),
+              child: const Text(
+                'close',
+                style: TextStyle(color: Colors.black),
+              ))
+        ],
+      ),
     );
   }
 }
