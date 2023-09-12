@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:withuslaw_template/page/event_format.dart';
 import 'package:withuslaw_template/page/home_page.dart';
+import 'package:withuslaw_template/page/html_page.dart';
 import 'package:withuslaw_template/page/notification_page.dart';
 import 'package:withuslaw_template/page/root_page.dart';
 
@@ -25,6 +26,10 @@ class AppPages {
     GetPage(
       name: '/event-format',
       page: () => const EventFormatPage(),
+    ),
+    GetPage(
+      name: '/html',
+      page: () => const HTMLPage(),
     )
   ];
 }

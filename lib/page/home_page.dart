@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:withuslaw_template/api/firebase_api.dart';
 import 'package:withuslaw_template/page/event_format.dart';
+import 'package:withuslaw_template/page/html_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,11 +28,16 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HTMLPage())),
+              child: const Text('html'),
+            ),
+            ElevatedButton(
               onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const EventFormatPage())),
-              child: const Text('popup'),
+              child: const Text('event'),
             ),
           ],
         ),
