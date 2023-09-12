@@ -19,12 +19,64 @@ class EventDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => const TextEventWidget(),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(
+          style: TextButton.styleFrom(backgroundColor: Colors.blue[700]),
+          onPressed: () => showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => const TextEventWidget(),
+          ),
+          child: const Text(
+            '이벤트 팝업 띄우기',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.pink[400],
+            ),
+            onPressed: () {
+              showModalBottomSheet<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return const BottomModalWidget();
+                },
+              );
+            },
+            child: const Text(
+              'Bottom Modal',
+              style: TextStyle(color: Colors.white),
+            ))
+      ],
+    );
+  }
+}
+
+class BottomModalWidget extends StatelessWidget {
+  const BottomModalWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 400,
+      color: Colors.amber,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const Text('Modal BottomSheet'),
+            ElevatedButton(
+              child: const Text('Close BottomSheet'),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        ),
       ),
-      child: const Text('이벤트 팝업 띄우기'),
     );
   }
 }

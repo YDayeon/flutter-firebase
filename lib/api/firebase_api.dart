@@ -4,9 +4,8 @@ import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:withuslaw_template/main.dart';
+import 'package:get/get.dart';
 import 'package:withuslaw_template/notification.dart';
-import 'package:withuslaw_template/page/notification_page.dart';
 
 Future<void> handleBackgroundMessgae(RemoteMessage message) async {
   // notification 알림 띄우기
@@ -31,10 +30,7 @@ class FirebaseApi {
   void handleMessage(RemoteMessage? message) {
     if (message == null) return;
 
-    navigatorKey.currentState?.pushNamed(
-      NotificationPage.route,
-      arguments: message,
-    );
+    Get.toNamed('/notification', arguments: message);
   }
 
   Future initLocalNotifications() async {

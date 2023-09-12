@@ -5,8 +5,6 @@ import 'package:withuslaw_template/page/notification_page.dart';
 import 'package:withuslaw_template/page/root_page.dart';
 import 'firebase_options.dart';
 
-final navigatorKey = GlobalKey<NavigatorState>();
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -31,7 +29,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      navigatorKey: navigatorKey,
       home: const RootPage(),
       routes: {
         NotificationPage.route: (context) => const NotificationPage(),
