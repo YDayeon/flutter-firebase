@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:withuslaw_template/api/firebase_api.dart';
-import 'package:withuslaw_template/page/popup_test_screen.dart';
+import 'package:withuslaw_template/page/event_format.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     FirebaseApi().initPushNotifications();
@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: ElevatedButton(
           onPressed: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const PopUpTestPage())),
+              MaterialPageRoute(builder: (context) => const EventFormatPage())),
           child: const Text('popup'),
         ),
       ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:withuslaw_template/api/firebase_api.dart';
-import 'package:withuslaw_template/page/home_screen.dart';
-import 'package:withuslaw_template/page/notification_screen.dart';
+import 'package:withuslaw_template/page/notification_page.dart';
+import 'package:withuslaw_template/page/root_page.dart';
 import 'firebase_options.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -32,9 +32,9 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
-      home: const HomeScreen(),
+      home: const RootPage(),
       routes: {
-        NotificationScreen.route: (context) => const NotificationScreen()
+        NotificationPage.route: (context) => const NotificationPage(),
       },
     );
   }

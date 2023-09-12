@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg_provider;
 
-class PopUpTestPage extends StatelessWidget {
-  const PopUpTestPage({super.key});
+class EventFormatPage extends StatelessWidget {
+  const EventFormatPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
-class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key});
+class NotificationPage extends StatelessWidget {
+  const NotificationPage({super.key});
   static const route = '/notification-screen';
 
   @override
